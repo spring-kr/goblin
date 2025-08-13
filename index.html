@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👑 Village Chief - 대기업 총수급 AI 시스템</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #533483 100%);
+            color: white; min-height: 100vh;
+        }
+        
+        .hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 2rem; position: relative;
+            background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+        }
+        
+        .hero h1 {
+            font-size: 4rem; margin-bottom: 1rem; font-weight: bold;
+            background: linear-gradient(45deg, #ffd700, #ff69b4, #00bfff);
+            background-size: 400% 400%;
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: magicText 3s ease-in-out infinite;
+        }
+        
+        @keyframes magicText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        .crown-animation {
+            font-size: 6rem; margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .feature-section {
+            padding: 4rem 2rem; max-width: 1400px; margin: 0 auto;
+        }
+        
+        .section-title {
+            text-align: center; font-size: 3rem; margin-bottom: 3rem;
+            color: #ffd700; position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block; width: 100px; height: 4px;
+            background: linear-gradient(45deg, #ffd700, #ff69b4);
+            margin: 1rem auto; border-radius: 2px;
+        }
+        
+        .folder-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; margin-bottom: 4rem;
+        }
+        
+        .folder-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px; padding: 2rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+        }
+        
+        .folder-card::before {
+            content: '';
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+        
+        .folder-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .folder-card:hover {
+            transform: translateY(-10px);
+            border-color: #ffd700;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+        }
+        
+        .folder-icon {
+            font-size: 3rem; margin-bottom: 1rem;
+            display: block; text-align: center;
+        }
+        
+        .folder-title {
+            font-size: 1.5rem; font-weight: bold;
+            color: #ffd700; margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .function-list {
+            list-style: none; margin-bottom: 1rem;
+        }
+        
+        .function-list li {
+            padding: 0.5rem 0; font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .function-list li:hover {
+            color: #ffd700; padding-left: 1rem;
+        }
+        
+        .stats-section {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4rem 2rem; text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
+        }
+        
+        .stat-card {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 2rem; border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .stat-number {
+            font-size: 3rem; font-weight: bold;
+            color: #ffd700; margin-bottom: 0.5rem;
+        }
+        
+        .comparison-section {
+            padding: 4rem 2rem;
+            background: rgba(255, 105, 180, 0.05);
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem; max-width: 1000px; margin: 0 auto;
+        }
+        
+        .vs-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem; border-radius: 20px;
+            text-align: center;
+        }
+        
+        .vs-card.traditional {
+            border: 2px solid rgba(255, 107, 107, 0.5);
+        }
+        
+        .vs-card.village-chief {
+            border: 2px solid rgba(255, 215, 0, 0.5);
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .pricing-section {
+            padding: 4rem 2rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem; max-width: 1000px; margin: 0 auto;
+        }
+        
+        .price-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem; border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            text-align: center; transition: all 0.3s ease;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+        }
+        
+        .price-card.featured {
+            border-color: #ffd700;
+            background: rgba(255, 215, 0, 0.15);
+            transform: scale(1.05);
+        }
+        
+        .price {
+            font-size: 2.5rem; font-weight: bold;
+            color: #ffd700; margin: 1rem 0;
+        }
+        
+        .magic-button {
+            background: linear-gradient(45deg, #ffd700, #ff69b4);
+            color: #1a1a2e; padding: 1rem 2rem; border: none;
+            border-radius: 25px; font-size: 1.2rem; font-weight: bold;
+            cursor: pointer; transition: all 0.3s ease; width: 100%;
+        }
+        
+        .magic-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        .demo-section {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 4rem 2rem; text-align: center;
+        }
+        
+        .demo-area {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 30px; padding: 2rem;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            max-width: 600px; margin: 0 auto;
+        }
+        
+        .magic-input {
+            width: 100%; padding: 1rem; font-size: 1.1rem;
+            border: 2px solid #ffd700; border-radius: 25px;
+            background: rgba(0, 0, 0, 0.3); color: white;
+            text-align: center; outline: none; margin-bottom: 1rem;
+        }
+        
+        .magic-input::placeholder { color: #ffd700; opacity: 0.7; }
+        
+        .result-area {
+            min-height: 200px; background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px; padding: 1.5rem; margin-top: 1rem;
+            border: 2px dashed rgba(255, 215, 0, 0.5);
+            display: flex; align-items: center; justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .comparison-grid { grid-template-columns: 1fr; }
+            .folder-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div style="max-width: 900px;">
+            <div class="crown-animation">👑</div>
+            <h1>Village Chief</h1>
+            <p style="font-size: 2rem; margin-bottom: 1rem; color: #ffd700; font-weight: bold;">
+                🌟 대기업 총수급 AI 시스템 🌟
+            </p>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem; color: #ff69b4;">
+                80개 전문 기능으로 모든 비즈니스를 완벽 관리
+            </p>
+            <p style="font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;">
+                🏢 대기업 총수 1명 = 월 20억원 | 👑 Village Chief = 월 299만원
+            </p>
+            
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <button class="magic-button" onclick="scrollToDemo()" style="width: auto; padding: 1rem 2rem;">
+                    🚀 무료 체험하기
+                </button>
+                <button class="magic-button" onclick="scrollToPricing()" style="width: auto; padding: 1rem 2rem;">
+                    💰 구독 플랜 보기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <h2 class="section-title">📊 Village Chief 성능 지표</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">80</div>
+                <p>전문 기능</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">40K</div>
+                <p>코드 라인</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">96.2%</div>
+                <p>평균 성능</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <p>무중단 서비스</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="feature-section">
+        <h2 class="section-title">🏗️ 8개 전문 영역 80개 기능</h2>
+        <div class="folder-grid">
+            <div class="folder-card">
+                <div class="folder-icon">🏠</div>
+                <h3 class="folder-title">기본 기능</h3>
+                <ul class="function-list">
+                    <li>✅ 업무 자동화 시스템</li>
+                    <li>✅ 일정 관리 시스템</li>
+                    <li>✅ 작업 우선순위 관리</li>
+                    <li>✅ 효율성 분석 도구</li>
+                    <li>✅ 성과 추적 시스템</li>
+                    <li>+ 5개 더 많은 기능</li>
+                </ul>
+            </div>
+            
+            <div class="folder-card">
+                <div class="folder-icon">💬</div>
+                <h3 class="folder-title">커뮤니케이션</h3>
+                <ul class="function-list">
+                    <li>✅ 내부 소통 관리</li>
+                    <li>✅ 외부 협력 시스템</li>
+                    <li>✅ 회의 관리 도구</li>
+                    <li>✅ 피드백 수집 시스템</li>
+                    <li>✅ 소통 효율성 분석</li>
+                    <li>+ 5개 더 많은 기능</li>
+                </ul>
+            </div>
+            
+            <div class="folder-card">
+                <div class="folder-icon">📊</div>
+                <h3 class="folder-title">정보 시스템</h3>
+                <ul class="function-list">
+                    <li>✅ 데이터 분석 엔진</li>
+                    <li>✅ 보고서 자동 생성</li>
+                    <li>✅ 실시간 모니터링</li>
+                    <li>✅ 예측 분석 시스템</li>
+                    <li>✅ 인사이트 도출 도구</li>
+                    <li>+ 5개 더 많은 기능</li>
+                </ul>
+            </div>
+            
+            <div class="folder-card">
+                <div class="folder-icon">🛠️</div>
+                <h3 class="folder-title">서비스 관리</h3>
+                <ul class="function-list">
+                    <li>✅ 고객 서비스 관리</li>
+                    <li>✅ 품질 관리 시스템</li>
+                    <li>✅ 서비스 최적화</li>
+                    <li>✅ 고객 만족도 분석</li>
+                    <li>✅ 서비스 성과 추적</li>
+                    <li>+ 5개 더 많은 기능</li>
+                </ul>
+            </div>
+            
+            <div class="folder-card">
+                <div class="folder-icon">💼</div>
+                <h3 class="folder-title">비즈니스 운영</h3>
+                <ul class="function-list">
+                    <li>✅ 전략 기획 시스템</li>
+                    <li>✅ 시장 분석 도구</li>
+                    <li>✅ 경쟁사 분석</li>
+                    <li>✅ 재무 예측 시스템</li>
+                    <li>✅ 투자 분석 도구</li>
+                    <li>+ 5개 더 많은 기능</li>
+                </ul>
+            </div>
+            
+            <div class="folder-card">
+                <div class="folder-icon">🚀</div>
+                <h3 class="folder-title">혁신 창조</h3>
+                <ul class="function-list">
+                    <li>✅ 신기술 도입 관리</li>
+                    <li>✅ 혁신 프로젝트 관리</li>
+                    <li>✅ 창의적 솔루션 생성</li>
+                    <li>✅ 혁신 성과 측정</li>
+                    <li>✅ 미래 트렌드 분석</li>
+                    <li>+ 5개 더 많은 기능</li>
+                </ul>
+            </div>
+            
+            <div class="folder-card">
+                <div class="folder-icon">⚙️</div>
+                <h3 class="folder-title">기술 관리</h3>
+                <ul class="function-list">
+                    <li>✅ IT 인프라 관리</li>
+                    <li>✅ 소프트웨어 개발 관리</li>
+                    <li>✅ 보안 관리 시스템</li>
+                    <li>✅ 구독 관리 시스템</li>
+                    <li>✅ API 관리 도구</li>
+                    <li>+ 5개 더 많은 기능</li>
+                </ul>
+            </div>
+            
+            <div class="folder-card">
+                <div class="folder-icon">👥</div>
+                <h3 class="folder-title">사용자 관리</h3>
+                <ul class="function-list">
+                    <li>✅ 고객 관계 관리</li>
+                    <li>✅ 직원 관리 시스템</li>
+                    <li>✅ 권한 관리 도구</li>
+                    <li>✅ 사용자 행동 분석</li>
+                    <li>✅ 만족도 관리</li>
+                    <li>+ 5개 더 많은 기능</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <h2 class="section-title">⚔️ 기존 방식 vs Village Chief</h2>
+        <div class="comparison-grid">
+            <div class="vs-card traditional">
+                <h3 style="color: #ff6b6b; margin-bottom: 2rem;">😐 기존 방식</h3>
+                <div style="text-align: left;">
+                    <p>• 대기업 총수 1명: <strong>월 2억원</strong></p>
+                    <p>• CTO, CFO, CMO 각각: <strong>월 1억원씩</strong></p>
+                    <p>• 전문 컨설팅: <strong>프로젝트당 10억원</strong></p>
+                    <p>• SAP 엔터프라이즈: <strong>월 2000만원</strong></p>
+                    <p>• 인간의 한계: 24시간 근무 불가</p>
+                    <p>• 감정적 판단, 실수 가능성</p>
+                    <p>• 휴가, 병가, 이직 리스크</p>
+                </div>
+                <div style="margin-top: 2rem; padding: 1rem; background: rgba(255, 107, 107, 0.1); border-radius: 10px;">
+                    <strong style="color: #ff6b6b;">총 비용: 월 5억원+</strong>
+                </div>
+            </div>
+            
+            <div class="vs-card village-chief">
+                <h3 style="color: #ffd700; margin-bottom: 2rem;">👑 Village Chief</h3>
+                <div style="text-align: left;">
+                    <p>• 대기업 총수급 AI: <strong>월 299만원</strong></p>
+                    <p>• 80개 전문 기능 포함</p>
+                    <p>• 24시간 무중단 서비스</p>
+                    <p>• 96.2% 평균 성능</p>
+                    <p>• 감정에 휘둘리지 않는 객관적 판단</p>
+                    <p>• 모든 데이터 동시 분석</p>
+                    <p>• 실시간 모니터링</p>
+                    <p>• 일관된 의사결정</p>
+                </div>
+                <div style="margin-top: 2rem; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
+                    <strong style="color: #ffd700;">총 비용: 월 299만원</strong><br>
+                    <strong style="color: #00ff00;">절약: 99.4% (월 4억 9700만원 절약!)</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section class="demo-section" id="demo">
+        <h2 class="section-title">🎮 Village Chief 체험하기</h2>
+        <div class="demo-area">
+            <h3 style="color: #ffd700; margin-bottom: 1rem;">👑 총수님, 무엇을 도와드릴까요?</h3>
+            <input type="text" class="magic-input" placeholder="예: 우리 회사 매출을 20% 늘리려면?" id="userQuestion">
+            <button class="magic-button" onclick="tryDemo()">🧠 Village Chief에게 물어보기</button>
+            <div class="result-area" id="demoResult">
+                <div style="opacity: 0.7; text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">👑</div>
+                    <p>Village Chief가 80개 전문 기능으로 분석해드립니다!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <h2 class="section-title">💎 Village Chief 구독 플랜</h2>
+        <div class="pricing-grid">
+            <div class="price-card">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">🌟</div>
+                <h3 style="color: #00bfff; margin-bottom: 1rem;">라이트</h3>
+                <div class="price">월 990,000원</div>
+                <ul style="text-align: left; margin-bottom: 2rem; list-style: none;">
+                    <li style="padding: 0.5rem 0;">✅ 핵심 40개 기능</li>
+                    <li style="padding: 0.5rem 0;">✅ 기본 분석 도구</li>
+                    <li style="padding: 0.5rem 0;">✅ 월 1,000회 처리</li>
+                    <li style="padding: 0.5rem 0;">✅ 이메일 지원</li>
+                    <li style="padding: 0.5rem 0;">✅ 30일 무료 체험</li>
+                </ul>
+                <button class="magic-button" onclick="subscribe('light')">선택하기</button>
+            </div>
+            
+            <div class="price-card featured">
+                <div style="background: #ffd700; color: #1a1a2e; padding: 0.5rem; border-radius: 10px; margin-bottom: 1rem; font-weight: bold;">🔥 추천</div>
+                <div style="font-size: 2rem; margin-bottom: 1rem;">💼</div>
+                <h3 style="color: #00bfff; margin-bottom: 1rem;">프로</h3>
+                <div class="price">월 2,990,000원</div>
+                <ul style="text-align: left; margin-bottom: 2rem; list-style: none;">
+                    <li style="padding: 0.5rem 0;">✅ 전체 80개 기능</li>
+                    <li style="padding: 0.5rem 0;">✅ 고급 분석 도구</li>
+                    <li style="padding: 0.5rem 0;">✅ 월 10,000회 처리</li>
+                    <li style="padding: 0.5rem 0;">✅ 우선 지원</li>
+                    <li style="padding: 0.5rem 0;">✅ API 연동</li>
+                    <li style="padding: 0.5rem 0;">✅ 커스터마이징</li>
+                </ul>
+                <button class="magic-button" onclick="subscribe('pro')">선택하기</button>
+            </div>
+            
+            <div class="price-card">
+                <div style="font-size: 2rem; margin-bottom: 1rem;">👑</div>
+                <h3 style="color: #00bfff; margin-bottom: 1rem;">울트라</h3>
+                <div class="price">월 9,990,000원</div>
+                <ul style="text-align: left; margin-bottom: 2rem; list-style: none;">
+                    <li style="padding: 0.5rem 0;">✅ 전체 80개 기능</li>
+                    <li style="padding: 0.5rem 0;">✅ 무제한 처리</li>
+                    <li style="padding: 0.5rem 0;">✅ 전용 지원팀</li>
+                    <li style="padding: 0.5rem 0;">✅ 완전 커스터마이징</li>
+                    <li style="padding: 0.5rem 0;">✅ 전담 매니저</li>
+                    <li style="padding: 0.5rem 0;">✅ 맞춤 개발</li>
+                </ul>
+                <button class="magic-button" onclick="subscribe('ultra')">선택하기</button>
+            </div>
+        </div>
+        
+        <!-- ROI Calculator -->
+        <div style="max-width: 800px; margin: 4rem auto 0;">
+            <div style="background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 20px; border: 2px solid rgba(255, 215, 0, 0.3);">
+                <h3 style="color: #ffd700; margin-bottom: 2rem; text-align: center;">💰 ROI 계산기</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; color: #ffd700;">현재 임원 수:</label>
+                        <input type="number" id="executiveCount" placeholder="5" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 2px solid #ffd700; background: rgba(0,0,0,0.3); color: white;">
+                    </div>
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; color: #ffd700;">평균 연봉 (억원):</label>
+                        <input type="number" id="avgSalaryBillion" placeholder="2" style="width: 100%; padding: 0.8rem; border-radius: 10px; border: 2px solid #ffd700; background: rgba(0,0,0,0.3); color: white;">
+                    </div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="magic-button" onclick="calculateROI()" style="width: auto; padding: 1rem 3rem;">💎 절약 효과 계산하기</button>
+                </div>
+                
+                <div id="roiResult" style="margin-top: 2rem; padding: 1.5rem; background: rgba(255, 215, 0, 0.1); border-radius: 15px; display: none;">
+                    <h4 style="color: #ffd700; margin-bottom: 1rem; text-align: center;">📊 계산 결과</h4>
+                    <div id="roiDetails"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section style="background: rgba(0, 0, 0, 0.5); padding: 3rem 2rem; text-align: center;">
+        <h2 class="section-title">📞 상담 문의</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9;">
+            Village Chief 도입 상담을 받아보세요!<br>
+            전문 상담사가 맞춤형 솔루션을 제안해드립니다.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+            <a href="tel:010-8031-5850" style="color: white; text-decoration: none;">
+                <button class="magic-button" style="width: auto; padding: 1rem 2rem;">📞 전화 상담</button>
+            </a>
+            <a href="https://open.kakao.com/o/g6lSj7Kh" target="_blank" style="color: white; text-decoration: none;">
+                <button class="magic-button" style="width: auto; padding: 1rem 2rem;">💬 카톡 상담</button>
+            </a>
+            <button class="magic-button" onclick="requestDemo()" style="width: auto; padding: 1rem 2rem;">🎬 데모 요청</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <div style="background: rgba(0, 0, 0, 0.8); text-align: center; padding: 2rem;">
+        <p style="opacity: 0.6; font-size: 0.9rem;">
+            © 2024 Village Chief - 대기업 총수급 AI 시스템 | spring-k 팀
+        </p>
+        <p style="opacity: 0.6; font-size: 0.8rem; margin-top: 0.5rem;">
+            모든 권리 보유 | 개인정보보호정책 | 이용약관 | 30일 무료 체험 + 100% 환불 보장
+        </p>
+    </div>
+
+    <script>
+        function scrollToDemo() {
+            document.getElementById('demo').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function scrollToPricing() {
+            document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function tryDemo() {
+            const question = document.getElementById('userQuestion').value;
+            const result = document.getElementById('demoResult');
+            
+            if (!question.trim()) {
+                alert('질문을 입력해주세요! 😊');
+                return;
+            }
+            
+            result.innerHTML = '<div style="font-size: 2rem;">🧠</div><div>Village Chief가 80개 기능으로 분석 중...</div>';
+            
+            setTimeout(() => {
+                const responses = [
+                    {
+                        question: '매출',
+                        answer: '📊 <strong>비즈니스 운영 시스템</strong> 분석 결과:<br><br>• 시장 분석: 타겟 고객층 확대 기회 발견<br>• 재무 예측: 마케팅 투자 ROI 320% 예상<br>• 전략 기획: 3단계 성장 로드맵 제시<br><br>🎯 <strong>추천 액션:</strong> 디지털 마케팅 예산 40% 증액'
+                    },
+                    {
+                        question: '비용',
+                        answer: '💰 <strong>재무 관리 시스템</strong> 분석 결과:<br><br>• 비용 최적화: 불필요한 지출 15% 발견<br>• 자동화 기회: 인건비 30% 절감 가능<br>• 공급업체 분석: 더 나은 조건 3곳 발견<br><br>🎯 <strong>추천 액션:</strong> 월 2000만원 절약 가능'
+                    },
+                    {
+                        question: '직원',
+                        answer: '👥 <strong>사용자 관리 시스템</strong> 분석 결과:<br><br>• 직원 만족도: 평균 73% (개선 필요)<br>• 생산성 분석: 업무 자동화로 40% 향상 가능<br>• 교육 추천: 5개 핵심 스킬 교육 제안<br><br>🎯 <strong>추천 액션:</strong> 맞춤형 교육 프로그램 도입'
+                    },
+                    {
+                        question: '기술',
+                        answer: '⚙️ <strong>기술 관리 시스템</strong> 분석 결과:<br><br>• IT 인프라: 클라우드 전환으로 60% 비용 절감<br>• 보안 점검: 3개 취약점 발견 및 해결책 제시<br>• 자동화 기회: 반복 업무 80% 자동화 가능<br><br>🎯 <strong>추천 액션:</strong> 단계별 디지털 전환 계획'
+                    }
+                ];
+                
+                let selectedResponse = responses[0]; // 기본값
+                
+                for (let response of responses) {
+                    if (question.includes(response.question)) {
+                        selectedResponse = response;
+                        break;
+                    }
+                }
+                
+                result.innerHTML = `
+                    <div style="text-align: left;">
+                        <div style="font-size: 1.5rem; margin-bottom: 1rem; text-align: center;">👑 Village Chief 분석 결과</div>
+                        <div style="background: rgba(255, 215, 0, 0.1); padding: 1.5rem; border-radius: 15px; border: 2px solid rgba(255, 215, 0, 0.3);">
+                            ${selectedResponse.answer}
+                        </div>
+                        <div style="margin-top: 1.5rem; text-align: center;">
+                            <button class="magic-button" onclick="subscribe('pro')" style="width: auto; padding: 1rem 2rem;">
+                                🚀 Village Chief 구독하기
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }, 2000);
+        }
+        
+        function calculateROI() {
+            const executives = document.getElementById('executiveCount').value || 5;
+            const avgSalary = document.getElementById('avgSalaryBillion').value || 2;
+            
+            const yearlyExecutiveCost = executives * avgSalary * 100000000; // 억원을 원으로 변환
+            const monthlyExecutiveCost = yearlyExecutiveCost / 12;
+            
+            const villageCostPro = 2990000; // 프로 플랜
+            const villageCostUltra = 9990000; // 울트라 플랜
+            
+            const monthlySavingsPro = monthlyExecutiveCost - villageCostPro;
+            const monthlySavingsUltra = monthlyExecutiveCost - villageCostUltra;
+            
+            const yearlySavingsPro = monthlySavingsPro * 12;
+            const yearlySavingsUltra = monthlySavingsUltra * 12;
+            
+            document.getElementById('roiResult').style.display = 'block';
+            document.getElementById('roiDetails').innerHTML = `
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div style="background: rgba(255, 105, 180, 0.1); padding: 1.5rem; border-radius: 15px;">
+                        <h5 style="color: #ff69b4; margin-bottom: 1rem;">💼 Village Chief 프로</h5>
+                        <p>현재 임원 비용: <span style="color: #ffd700;">${monthlyExecutiveCost.toLocaleString()}원/월</span></p>
+                        <p>Village Chief 비용: <span style="color: #ff6b6b;">2,990,000원/월</span></p>
+                        <p style="font-weight: bold; font-size: 1.1rem; color: #00ff00;">월 절약: ${monthlySavingsPro.toLocaleString()}원</p>
+                        <p style="font-weight: bold; font-size: 1.2rem; color: #ffd700;">연간 절약: ${yearlySavingsPro.toLocaleString()}원</p>
+                    </div>
+                    <div style="background: rgba(0, 191, 255, 0.1); padding: 1.5rem; border-radius: 15px;">
+                        <h5 style="color: #00bfff; margin-bottom: 1rem;">👑 Village Chief 울트라</h5>
+                        <p>현재 임원 비용: <span style="color: #ffd700;">${monthlyExecutiveCost.toLocaleString()}원/월</span></p>
+                        <p>Village Chief 비용: <span style="color: #ff6b6b;">9,990,000원/월</span></p>
+                        <p style="font-weight: bold; font-size: 1.1rem; color: #00ff00;">월 절약: ${monthlySavingsUltra.toLocaleString()}원</p>
+                        <p style="font-weight: bold; font-size: 1.2rem; color: #ffd700;">연간 절약: ${yearlySavingsUltra.toLocaleString()}원</p>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 1.5rem; padding: 1rem; background: rgba(255, 215, 0, 0.1); border-radius: 10px;">
+                    <p style="color: #ffd700; font-weight: bold; font-size: 1.3rem;">
+                        💡 ${executives}명 임원 대신 Village Chief로 연간 최대 ${Math.max(yearlySavingsPro, yearlySavingsUltra).toLocaleString()}원 절약!
+                    </p>
+                    <p style="color: #00ff00; margin-top: 0.5rem;">ROI: ${Math.round(Math.max(yearlySavingsPro, yearlySavingsUltra) / (villageCostUltra * 12) * 100)}% 🚀</p>
+                </div>
+            `;
+        }
+        
+        function subscribe(plan) {
+            const plans = {
+                'light': 'Village Chief 라이트 (월 990,000원)',
+                'pro': 'Village Chief 프로 (월 2,990,000원)',
+                'ultra': 'Village Chief 울트라 (월 9,990,000원)'
+            };
+            
+            alert(`${plans[plan]} 구독을 선택하셨습니다!\n\n👑 30일 무료 체험 포함!\n🎯 80개 전문 기능 체험 가능!\n💯 100% 환불 보장!\n\n상담 전화: 010-8031-5850\n카카오톡: https://open.kakao.com/o/g6lSj7Kh\n\n전문 상담사가 맞춤형 도입 계획을 제안해드립니다! 👑✨`);
+        }
+        
+        function requestDemo() {
+            alert('🎬 Village Chief 데모 요청!\n\n✅ 80개 기능 실시간 시연\n✅ 맞춤형 사용 사례 소개\n✅ 1:1 전문가 상담\n✅ 도입 효과 시뮬레이션\n\n전문 상담사가 직접 시연해드립니다!\n\n상담 전화: 010-8031-5850\n카카오톡: https://open.kakao.com/o/g6lSj7Kh');
+        }
+        
+        // Enter 키 지원
+        document.getElementById('userQuestion').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') tryDemo();
+        });
+        
+        // 스크롤 애니메이션
+        window.addEventListener('scroll', function() {
+            const cards = document.querySelectorAll('.folder-card, .price-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // 초기 카드 설정
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.folder-card, .price-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.8s ease';
+            });
+            
+            // 약간의 지연 후 애니메이션 시작
+            setTimeout(() => {
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+            }, 500);
+        });
+        
+        // 가격 하이라이트 효과
+        document.querySelectorAll('.price').forEach(price => {
+            price.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.textShadow = '0 0 20px #ffd700';
+            });
+            
+            price.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+                this.style.textShadow = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
